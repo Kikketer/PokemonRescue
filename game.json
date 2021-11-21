@@ -206,12 +206,12 @@
           "customSize": false,
           "height": 0,
           "layer": "",
-          "locked": true,
+          "locked": false,
           "name": "MainLand",
           "persistentUuid": "4becee66-f5c8-4e96-b364-5a3ae687cd34",
           "width": 0,
-          "x": -127,
-          "y": -127,
+          "x": 0,
+          "y": 0,
           "zOrder": 1,
           "numberProperties": [],
           "stringProperties": [],
@@ -258,8 +258,8 @@
           "name": "GateDoor",
           "persistentUuid": "7a784094-f8bb-41e0-8102-f04b49234ebc",
           "width": 0,
-          "x": 177,
-          "y": 162,
+          "x": 304,
+          "y": 289,
           "zOrder": 4,
           "numberProperties": [],
           "stringProperties": [],
@@ -274,8 +274,8 @@
           "name": "Blocker",
           "persistentUuid": "c449c051-4b33-42e1-9617-8f7f8c762340",
           "width": 54,
-          "x": 118,
-          "y": 164,
+          "x": 245,
+          "y": 291,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -290,8 +290,8 @@
           "name": "Blocker",
           "persistentUuid": "78d65265-2017-4897-a42b-d4737b19b2b0",
           "width": 38,
-          "x": 198,
-          "y": 164,
+          "x": 325,
+          "y": 291,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -306,8 +306,8 @@
           "name": "Blocker",
           "persistentUuid": "4930ad08-32b4-4b86-91e4-8e44f50753bb",
           "width": 48,
-          "x": 70,
-          "y": 132,
+          "x": 197,
+          "y": 259,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -322,8 +322,8 @@
           "name": "Blocker",
           "persistentUuid": "7d296a71-6432-480c-af1f-ba84c8bb01c1",
           "width": 6,
-          "x": 118,
-          "y": 132,
+          "x": 245,
+          "y": 259,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -338,8 +338,8 @@
           "name": "Blocker",
           "persistentUuid": "2438ab91-45b4-41a7-8f0b-5511c3dc6f04",
           "width": 160,
-          "x": 76,
-          "y": 52,
+          "x": 203,
+          "y": 179,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -354,8 +354,8 @@
           "name": "Blocker",
           "persistentUuid": "9e0baa0f-3a83-4b7e-88eb-64edc9d514bb",
           "width": 6,
-          "x": 70,
-          "y": 52,
+          "x": 197,
+          "y": 179,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -370,8 +370,8 @@
           "name": "Blocker",
           "persistentUuid": "20fbd3be-2abb-4124-b184-940da8971506",
           "width": 6,
-          "x": 230,
-          "y": 60,
+          "x": 357,
+          "y": 187,
           "zOrder": 5,
           "numberProperties": [],
           "stringProperties": [],
@@ -386,8 +386,8 @@
           "name": "GateDoor",
           "persistentUuid": "f2c3e01a-3d88-420f-883c-5bef31ad8361",
           "width": 0,
-          "x": 192,
-          "y": 80,
+          "x": 319,
+          "y": 207,
           "zOrder": 6,
           "numberProperties": [],
           "stringProperties": [],
@@ -421,6 +421,8 @@
           "effects": [],
           "behaviors": [
             {
+              "name": "Pathfinding",
+              "type": "PathfindingBehavior::PathfindingBehavior",
               "acceleration": 4000,
               "allowDiagonals": true,
               "angleOffset": 0,
@@ -431,14 +433,12 @@
               "gridOffsetX": 0,
               "gridOffsetY": 0,
               "maxSpeed": 90,
-              "name": "Pathfinding",
-              "rotateObject": false,
-              "type": "PathfindingBehavior::PathfindingBehavior"
+              "rotateObject": false
             },
             {
-              "allowDiagonals": true,
               "name": "TopDownMovement",
               "type": "TopDownMovementBehavior::TopDownMovementBehavior",
+              "allowDiagonals": true,
               "acceleration": 4000,
               "angleOffset": 0,
               "angularMaxSpeed": 180,
@@ -609,10 +609,10 @@
           "effects": [],
           "behaviors": [
             {
-              "cost": 2,
-              "impassable": true,
               "name": "PathfindingObstacle",
-              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior",
+              "cost": 2,
+              "impassable": true
             }
           ],
           "animations": [
@@ -817,58 +817,107 @@
               "parameters": [
                 "Ginny",
                 "GateDoor",
-                "24",
+                "34",
                 ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "SourisSurObjet"
-              },
-              "parameters": [
-                "GateDoor",
-                "",
-                "no",
-                ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "MouseButtonPressed"
-              },
-              "parameters": [
-                "",
-                "Left"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": [],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ToggleObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "GateDoor",
-                "test"
               ],
               "subInstructions": []
             }
           ],
+          "actions": [],
           "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "GateDoor",
+                    "",
+                    "no",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MouseButtonPressed"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ToggleObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "GateDoor",
+                    "test"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "KeyPressed"
+                  },
+                  "parameters": [
+                    "",
+                    "x"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ToggleObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "GateDoor",
+                    "test"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
             {
               "disabled": false,
               "folded": false,
@@ -964,6 +1013,21 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Camera",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
@@ -975,10 +1039,10 @@
               "parameters": [
                 "",
                 "Ginny",
-                "-127",
-                "-127",
-                "385",
-                "385",
+                "0",
+                "0",
+                "512",
+                "512",
                 "yes",
                 "",
                 ""
