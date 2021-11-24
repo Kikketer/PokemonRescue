@@ -874,6 +874,15 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Link",
+          "include": {
+            "includeConfig": 0
+          },
+          "target": "CrittersEvents"
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -1438,11 +1447,10 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "SetSceneVariableAsBoolean"
+                    "value": "ToggleSceneVariableAsBoolean"
                   },
                   "parameters": [
-                    "dialogOpen",
-                    "True"
+                    "dialogOpen"
                   ],
                   "subInstructions": []
                 }
@@ -1460,7 +1468,7 @@
                     "value": "SourisSurObjet"
                   },
                   "parameters": [
-                    "GateDoor",
+                    "Critters",
                     "",
                     "no",
                     ""
@@ -1491,11 +1499,10 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "SetSceneVariableAsBoolean"
+                    "value": "ToggleSceneVariableAsBoolean"
                   },
                   "parameters": [
-                    "dialogOpen",
-                    "True"
+                    "dialogOpen"
                   ],
                   "subInstructions": []
                 }
@@ -1532,10 +1539,126 @@
                 "\"Menus\""
               ],
               "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ChangeTimeScale"
+              },
+              "parameters": [
+                "",
+                "0"
+              ],
+              "subInstructions": []
             }
           ],
           "events": []
         },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "SceneVariableAsBoolean"
+              },
+              "parameters": [
+                "dialogOpen",
+                "False"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "HideLayer"
+              },
+              "parameters": [
+                "",
+                "\"Menus\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ChangeTimeScale"
+              },
+              "parameters": [
+                "",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 0,
+          "ambientLightColorG": 0,
+          "ambientLightColorR": 0,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "name": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        },
+        {
+          "ambientLightColorB": 15,
+          "ambientLightColorG": 6024160,
+          "ambientLightColorR": 7463472,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "name": "Menus",
+          "visibility": false,
+          "cameras": [],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": [
+        {
+          "name": "Pathfinding",
+          "type": "PathfindingBehavior::PathfindingBehavior"
+        },
+        {
+          "name": "PathfindingObstacle",
+          "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+        },
+        {
+          "name": "TopDownMovement",
+          "type": "TopDownMovementBehavior::TopDownMovementBehavior"
+        },
+        {
+          "name": "YSort",
+          "type": "YSort::YSort"
+        }
+      ]
+    }
+  ],
+  "externalEvents": [
+    {
+      "associatedLayout": "Main",
+      "lastChangeTimeStamp": 0,
+      "name": "CrittersEvents",
+      "events": [
         {
           "disabled": false,
           "folded": false,
@@ -1668,18 +1791,6 @@
                             "Critters.CenterY()"
                           ],
                           "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "DebuggerTools::ConsoleLog"
-                          },
-                          "parameters": [
-                            "Critters.VariableString(directionX) + \" -> LEFT\"",
-                            "\"info\"",
-                            "\"debug\""
-                          ],
-                          "subInstructions": []
                         }
                       ],
                       "events": []
@@ -1715,18 +1826,6 @@
                             "",
                             "Critters.CenterX() + RandomInRange(10,35)",
                             "Critters.CenterY()"
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "DebuggerTools::ConsoleLog"
-                          },
-                          "parameters": [
-                            "Critters.ObjectName() + \" -> RIGHT\"",
-                            "\"info\"",
-                            "\"debug\""
                           ],
                           "subInstructions": []
                         }
@@ -1766,18 +1865,6 @@
                             "Critters.CenterY() - RandomInRange(10,35)"
                           ],
                           "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "DebuggerTools::ConsoleLog"
-                          },
-                          "parameters": [
-                            "Critters.ObjectName() + \" -> UP\"",
-                            "\"info\"",
-                            "\"debug\""
-                          ],
-                          "subInstructions": []
                         }
                       ],
                       "events": []
@@ -1815,18 +1902,6 @@
                             "Critters.CenterY() + RandomInRange(10,35)"
                           ],
                           "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "DebuggerTools::ConsoleLog"
-                          },
-                          "parameters": [
-                            "Critters.ObjectName() + \" -> DOWN\"",
-                            "\"info\"",
-                            "\"debug\""
-                          ],
-                          "subInstructions": []
                         }
                       ],
                       "events": []
@@ -1837,63 +1912,9 @@
             }
           ]
         }
-      ],
-      "layers": [
-        {
-          "ambientLightColorB": 0,
-          "ambientLightColorG": 0,
-          "ambientLightColorR": 0,
-          "followBaseLayerCamera": false,
-          "isLightingLayer": false,
-          "name": "",
-          "visibility": true,
-          "cameras": [
-            {
-              "defaultSize": true,
-              "defaultViewport": true,
-              "height": 0,
-              "viewportBottom": 1,
-              "viewportLeft": 0,
-              "viewportRight": 1,
-              "viewportTop": 0,
-              "width": 0
-            }
-          ],
-          "effects": []
-        },
-        {
-          "ambientLightColorB": 15,
-          "ambientLightColorG": 6024160,
-          "ambientLightColorR": 7463472,
-          "followBaseLayerCamera": false,
-          "isLightingLayer": false,
-          "name": "Menus",
-          "visibility": false,
-          "cameras": [],
-          "effects": []
-        }
-      ],
-      "behaviorsSharedData": [
-        {
-          "name": "Pathfinding",
-          "type": "PathfindingBehavior::PathfindingBehavior"
-        },
-        {
-          "name": "PathfindingObstacle",
-          "type": "PathfindingBehavior::PathfindingObstacleBehavior"
-        },
-        {
-          "name": "TopDownMovement",
-          "type": "TopDownMovementBehavior::TopDownMovementBehavior"
-        },
-        {
-          "name": "YSort",
-          "type": "YSort::YSort"
-        }
       ]
     }
   ],
-  "externalEvents": [],
   "eventsFunctionsExtensions": [
     {
       "author": "Gustavo Marciano",
