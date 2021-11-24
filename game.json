@@ -456,6 +456,22 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "Charmander",
+          "persistentUuid": "44fa9def-aba3-4e0f-b18f-cfdb657a27cd",
+          "width": 0,
+          "x": 357,
+          "y": 325,
+          "zOrder": 7,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -1533,7 +1549,7 @@
               "parameters": [
                 "Critters",
                 "\"movementTimer\"",
-                "6"
+                "RandomInRange(1,6)"
               ],
               "subInstructions": []
             }
@@ -1599,6 +1615,19 @@
                       "parameters": [
                         "Critters",
                         "directionX",
+                        "=",
+                        "RandomInRange(0,1)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Critters",
+                        "directionY",
                         "=",
                         "RandomInRange(0,1)"
                       ],
@@ -1696,6 +1725,104 @@
                           },
                           "parameters": [
                             "Critters.ObjectName() + \" -> RIGHT\"",
+                            "\"info\"",
+                            "\"debug\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "VarObjet"
+                          },
+                          "parameters": [
+                            "Critters",
+                            "directionY",
+                            "=",
+                            "0"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "PathfindingBehavior::SetDestination"
+                          },
+                          "parameters": [
+                            "Critters",
+                            "Pathfinding",
+                            "",
+                            "Critters.CenterX()",
+                            "Critters.CenterY() - RandomInRange(10,35)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "DebuggerTools::ConsoleLog"
+                          },
+                          "parameters": [
+                            "Critters.ObjectName() + \" -> UP\"",
+                            "\"info\"",
+                            "\"debug\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "VarObjet"
+                          },
+                          "parameters": [
+                            "Critters",
+                            "directionY",
+                            "=",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "PathfindingBehavior::SetDestination"
+                          },
+                          "parameters": [
+                            "Critters",
+                            "Pathfinding",
+                            "",
+                            "Critters.CenterX()",
+                            "Critters.CenterY() + RandomInRange(10,35)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "DebuggerTools::ConsoleLog"
+                          },
+                          "parameters": [
+                            "Critters.ObjectName() + \" -> DOWN\"",
                             "\"info\"",
                             "\"debug\""
                           ],
