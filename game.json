@@ -126,15 +126,6 @@
       },
       {
         "alwaysLoaded": false,
-        "file": "NewObject-1.png",
-        "kind": "image",
-        "metadata": "",
-        "name": "NewObject-1.png",
-        "smoothed": false,
-        "userAdded": true
-      },
-      {
-        "alwaysLoaded": false,
         "file": "dialog.png",
         "kind": "image",
         "metadata": "",
@@ -213,6 +204,24 @@
         "name": "pokemon-charmander-right-2.png",
         "smoothed": false,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "NewObject-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "NewObject-1.png",
+        "smoothed": false,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "button-feed-standard.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "button-feed-standard.png",
+        "smoothed": false,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -500,6 +509,22 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "Menus",
+          "locked": false,
+          "name": "feedButton",
+          "persistentUuid": "0e471274-f54a-4da3-9ef5-a5a18204ef93",
+          "width": 0,
+          "x": 189,
+          "y": 209,
+          "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -736,7 +761,7 @@
           ]
         },
         {
-          "name": "Btn",
+          "name": "feedButton",
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -745,16 +770,16 @@
           "behaviors": [],
           "animations": [
             {
-              "name": "NewObject",
+              "name": "standard",
               "useMultipleDirections": false,
               "directions": [
                 {
                   "looping": false,
-                  "timeBetweenFrames": 0.07999999821186066,
+                  "timeBetweenFrames": 0.08,
                   "sprites": [
                     {
                       "hasCustomCollisionMask": false,
-                      "image": "NewObject-1.png",
+                      "image": "button-feed-standard.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -1652,7 +1677,7 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "Dialog",
+          "comment": "Pokemon Status Dialog",
           "comment2": ""
         },
         {
@@ -1773,6 +1798,84 @@
                   },
                   "parameters": [
                     "dialogOpen"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "dialogText",
+                    "=",
+                    "\"Health: \" + ToString(pokemonGroup.Variable(health)) + NewLine() + \"Happiness: \" + ToString(pokemonGroup.Variable(happiness))"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "feedButton",
+                    "",
+                    "no",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MouseButtonPressed"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "dialogOpen",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "health",
+                    "+",
+                    "10"
                   ],
                   "subInstructions": []
                 }
@@ -1988,6 +2091,78 @@
                         "health",
                         "-",
                         "pokemonGroup.Variable(healthFactor)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "happiness",
+                        ">",
+                        "100"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "happiness",
+                        "=",
+                        "100"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "health",
+                        ">",
+                        "100"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "health",
+                        "=",
+                        "100"
                       ],
                       "subInstructions": []
                     }
