@@ -311,13 +311,13 @@
         },
         {
           "angle": 0,
-          "customSize": false,
-          "height": 0,
+          "customSize": true,
+          "height": 62,
           "layer": "Menus",
           "locked": false,
           "name": "dialogText",
           "persistentUuid": "e31b955d-d9a5-4d07-b92b-e84f0f973a63",
-          "width": 0,
+          "width": 185,
           "x": 120,
           "y": 140,
           "zOrder": 3,
@@ -780,7 +780,28 @@
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
-          "variables": [],
+          "variables": [
+            {
+              "name": "health",
+              "type": "number",
+              "value": 100
+            },
+            {
+              "name": "happiness",
+              "type": "number",
+              "value": 100
+            },
+            {
+              "name": "healthFactor",
+              "type": "number",
+              "value": 2
+            },
+            {
+              "name": "happinessFactor",
+              "type": "number",
+              "value": 1
+            }
+          ],
           "effects": [],
           "behaviors": [
             {
@@ -911,13 +932,13 @@
           "variables": [],
           "effects": [],
           "behaviors": [],
-          "string": "Hi there",
+          "string": "Hi there\nNewline?",
           "font": "",
-          "characterSize": 20,
+          "characterSize": 12,
           "color": {
-            "b": 0,
-            "g": 0,
-            "r": 0
+            "b": 35,
+            "g": 35,
+            "r": 36
           }
         },
         {
@@ -965,7 +986,28 @@
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
-          "variables": [],
+          "variables": [
+            {
+              "name": "health",
+              "type": "number",
+              "value": 100
+            },
+            {
+              "name": "happiness",
+              "type": "number",
+              "value": 100
+            },
+            {
+              "name": "healthFactor",
+              "type": "number",
+              "value": 1
+            },
+            {
+              "name": "happinessFactor",
+              "type": "number",
+              "value": 1
+            }
+          ],
           "effects": [],
           "behaviors": [
             {
@@ -1669,6 +1711,18 @@
                     "dialogOpen"
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "dialogText",
+                    "=",
+                    "\"Health: \" + ToString(pokemonGroup.Variable(health)) + NewLine() + \"Happiness: \" + ToString(pokemonGroup.Variable(happiness))"
+                  ],
+                  "subInstructions": []
                 }
               ],
               "events": []
@@ -1825,11 +1879,142 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "New Creatures",
+          "comment": "Overall Tick",
           "comment2": ""
         },
         {
           "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "10",
+                "\"creatureEvent\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"creatureEvent\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "pokemonGroup",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "happiness",
+                        ">",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "happiness",
+                        "-",
+                        "pokemonGroup.Variable(happinessFactor)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "health",
+                        ">",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "health",
+                        "-",
+                        "pokemonGroup.Variable(healthFactor)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "New Creatures",
+          "comment2": ""
+        },
+        {
+          "disabled": true,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
@@ -1919,7 +2104,7 @@
           "followBaseLayerCamera": false,
           "isLightingLayer": false,
           "name": "Menus",
-          "visibility": false,
+          "visibility": true,
           "cameras": [],
           "effects": []
         }
