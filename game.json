@@ -135,19 +135,82 @@
       },
       {
         "alwaysLoaded": false,
-        "file": "pokemon-charmander.png",
+        "file": "dialog.png",
         "kind": "image",
         "metadata": "",
-        "name": "pokemon-charmander.png",
+        "name": "dialog.png",
         "smoothed": false,
         "userAdded": true
       },
       {
         "alwaysLoaded": false,
-        "file": "dialog.png",
+        "file": "pokemon-bulbasaur-left-1.png",
         "kind": "image",
         "metadata": "",
-        "name": "dialog.png",
+        "name": "pokemon-bulbasaur.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-bulbasaur-left-2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-bulbasaur2.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-bulbasaur-right-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-bulbasaur-right-1.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-bulbasaur-right-2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-bulbasaur-right-2.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-charmander-left-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-charmander-left-1.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-charmander-left-2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-charmander-left-2.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-charmander-right-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-charmander-right-1.png",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "pokemon-charmander-right-2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "pokemon-charmander-right-2.png",
         "smoothed": false,
         "userAdded": true
       }
@@ -186,48 +249,29 @@
       },
       "objectsGroups": [
         {
-          "name": "Critters",
+          "name": "pokemonGroup",
           "objects": [
             {
-              "name": "Charmander"
+              "name": "bulbasaur"
+            },
+            {
+              "name": "charmander"
             }
           ]
         }
       ],
       "variables": [
         {
-          "name": "Critters",
+          "name": "critterToSprite",
           "type": "array",
           "children": [
             {
-              "type": "structure",
-              "children": [
-                {
-                  "name": "Fullness",
-                  "type": "number",
-                  "value": 1
-                },
-                {
-                  "name": "Happyness",
-                  "type": "string",
-                  "value": "1"
-                },
-                {
-                  "name": "Name",
-                  "type": "string",
-                  "value": "Chuckles"
-                },
-                {
-                  "name": "Sprite",
-                  "type": "string",
-                  "value": "Chuckles"
-                },
-                {
-                  "name": "Type",
-                  "type": "string",
-                  "value": "charmander"
-                }
-              ]
+              "type": "string",
+              "value": "charmander"
+            },
+            {
+              "type": "string",
+              "value": "bulbasaur"
             }
           ]
         }
@@ -429,22 +473,6 @@
           "angle": 0,
           "customSize": false,
           "height": 0,
-          "layer": "",
-          "locked": false,
-          "name": "Charmander",
-          "persistentUuid": "6a549f1b-675b-4301-9383-17fbc72ed8be",
-          "width": 0,
-          "x": 311,
-          "y": 332,
-          "zOrder": 7,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
           "layer": "Menus",
           "locked": false,
           "name": "dialog",
@@ -463,12 +491,12 @@
           "height": 0,
           "layer": "",
           "locked": false,
-          "name": "Charmander",
-          "persistentUuid": "44fa9def-aba3-4e0f-b18f-cfdb657a27cd",
+          "name": "charmander",
+          "persistentUuid": "914abffc-d68b-4960-932c-c3bf50255376",
           "width": 0,
-          "x": 357,
-          "y": 325,
-          "zOrder": 7,
+          "x": 365,
+          "y": 322,
+          "zOrder": 8,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -748,7 +776,7 @@
           ]
         },
         {
-          "name": "Charmander",
+          "name": "bulbasaur",
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -779,27 +807,90 @@
           ],
           "animations": [
             {
-              "name": "",
+              "name": "left",
               "useMultipleDirections": false,
               "directions": [
                 {
-                  "looping": false,
-                  "timeBetweenFrames": 0.08,
+                  "looping": true,
+                  "timeBetweenFrames": 1,
                   "sprites": [
                     {
                       "hasCustomCollisionMask": false,
-                      "image": "pokemon-charmander.png",
+                      "image": "pokemon-bulbasaur.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
-                        "x": 8,
-                        "y": 8
+                        "x": 0,
+                        "y": 0
                       },
                       "centerPoint": {
                         "automatic": true,
                         "name": "centre",
-                        "x": 8,
-                        "y": 8
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    },
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-bulbasaur2.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "right",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": true,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-bulbasaur-right-1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    },
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-bulbasaur-right-2.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
                       },
                       "customCollisionMask": []
                     }
@@ -849,6 +940,131 @@
                     {
                       "hasCustomCollisionMask": false,
                       "image": "dialog.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "charmander",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "acceleration": 4000,
+              "allowDiagonals": true,
+              "angleOffset": 0,
+              "angularMaxSpeed": 180,
+              "cellHeight": 20,
+              "cellWidth": 20,
+              "extraBorder": 0,
+              "gridOffsetX": 0,
+              "gridOffsetY": 0,
+              "maxSpeed": 90,
+              "name": "Pathfinding",
+              "rotateObject": false,
+              "type": "PathfindingBehavior::PathfindingBehavior"
+            },
+            {
+              "cost": 2,
+              "impassable": true,
+              "name": "PathfindingObstacle",
+              "type": "PathfindingBehavior::PathfindingObstacleBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "left",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": true,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-charmander-left-1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    },
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-charmander-left-2.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "right",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": true,
+                  "timeBetweenFrames": 1,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-charmander-right-1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    },
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "pokemon-charmander-right-2.png",
                       "points": [],
                       "originPoint": {
                         "name": "origine",
@@ -1279,7 +1495,7 @@
               },
               "parameters": [
                 "Ginny",
-                "Critters",
+                "pokemonGroup",
                 ""
               ],
               "subInstructions": []
@@ -1409,7 +1625,7 @@
               },
               "parameters": [
                 "Ginny",
-                "Critters",
+                "pokemonGroup",
                 "34",
                 ""
               ],
@@ -1468,7 +1684,7 @@
                     "value": "SourisSurObjet"
                   },
                   "parameters": [
-                    "Critters",
+                    "pokemonGroup",
                     "",
                     "no",
                     ""
@@ -1596,6 +1812,81 @@
             }
           ],
           "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "New Creatures",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "10",
+                "\"creatureEvent\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"creatureEvent\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "newCreatureIndex",
+                "=",
+                "RandomInRange(0,VariableChildCount(critterToSprite) - 1)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "CreateByName"
+              },
+              "parameters": [
+                "",
+                "pokemonGroup",
+                "VariableString(critterToSprite[RandomInRange(0,1)])",
+                "255",
+                "225",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "layers": [
@@ -1670,7 +1961,7 @@
                 "value": "ObjectTimer"
               },
               "parameters": [
-                "Critters",
+                "pokemonGroup",
                 "\"movementTimer\"",
                 "RandomInRange(1,6)"
               ],
@@ -1684,7 +1975,7 @@
                 "value": "ResetObjectTimer"
               },
               "parameters": [
-                "Critters",
+                "pokemonGroup",
                 "\"movementTimer\""
               ],
               "subInstructions": []
@@ -1703,7 +1994,7 @@
                   },
                   "parameters": [
                     "",
-                    "Critters"
+                    "pokemonGroup"
                   ],
                   "subInstructions": []
                 }
@@ -1721,7 +2012,7 @@
                         "value": "PathfindingBehavior::Speed"
                       },
                       "parameters": [
-                        "Critters",
+                        "pokemonGroup",
                         "Pathfinding",
                         "=",
                         "0"
@@ -1736,7 +2027,7 @@
                         "value": "ModVarObjet"
                       },
                       "parameters": [
-                        "Critters",
+                        "pokemonGroup",
                         "directionX",
                         "=",
                         "RandomInRange(0,1)"
@@ -1749,7 +2040,7 @@
                         "value": "ModVarObjet"
                       },
                       "parameters": [
-                        "Critters",
+                        "pokemonGroup",
                         "directionY",
                         "=",
                         "RandomInRange(0,1)"
@@ -1769,7 +2060,7 @@
                             "value": "VarObjet"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "directionX",
                             "=",
                             "0"
@@ -1784,11 +2075,11 @@
                             "value": "PathfindingBehavior::SetDestination"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "Pathfinding",
                             "",
-                            "Critters.CenterX() - RandomInRange(10,35)",
-                            "Critters.CenterY()"
+                            "pokemonGroup.CenterX() - RandomInRange(10, 35)",
+                            "pokemonGroup.CenterY()"
                           ],
                           "subInstructions": []
                         }
@@ -1806,7 +2097,7 @@
                             "value": "VarObjet"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "directionX",
                             "=",
                             "1"
@@ -1821,11 +2112,11 @@
                             "value": "PathfindingBehavior::SetDestination"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "Pathfinding",
                             "",
-                            "Critters.CenterX() + RandomInRange(10,35)",
-                            "Critters.CenterY()"
+                            "pokemonGroup.CenterX() + RandomInRange(10, 35)",
+                            "pokemonGroup.CenterY()"
                           ],
                           "subInstructions": []
                         }
@@ -1843,7 +2134,7 @@
                             "value": "VarObjet"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "directionY",
                             "=",
                             "0"
@@ -1858,11 +2149,11 @@
                             "value": "PathfindingBehavior::SetDestination"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "Pathfinding",
                             "",
-                            "Critters.CenterX()",
-                            "Critters.CenterY() - RandomInRange(10,35)"
+                            "pokemonGroup.CenterX()",
+                            "pokemonGroup.CenterY() - RandomInRange(10, 35)"
                           ],
                           "subInstructions": []
                         }
@@ -1880,7 +2171,7 @@
                             "value": "VarObjet"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "directionY",
                             "=",
                             "1"
@@ -1895,11 +2186,11 @@
                             "value": "PathfindingBehavior::SetDestination"
                           },
                           "parameters": [
-                            "Critters",
+                            "pokemonGroup",
                             "Pathfinding",
                             "",
-                            "Critters.CenterX()",
-                            "Critters.CenterY() + RandomInRange(10,35)"
+                            "pokemonGroup.CenterX()",
+                            "pokemonGroup.CenterY() + RandomInRange(10, 35)"
                           ],
                           "subInstructions": []
                         }
