@@ -319,7 +319,7 @@
           "persistentUuid": "4becee66-f5c8-4e96-b364-5a3ae687cd34",
           "width": 0,
           "x": 0,
-          "y": 0,
+          "y": 1,
           "zOrder": 1,
           "numberProperties": [],
           "stringProperties": [],
@@ -336,7 +336,7 @@
           "width": 0,
           "x": 306,
           "y": 265,
-          "zOrder": 2,
+          "zOrder": 50,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -368,7 +368,7 @@
           "width": 0,
           "x": 304,
           "y": 289,
-          "zOrder": 4,
+          "zOrder": 3,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -528,7 +528,7 @@
           "width": 151,
           "x": 205,
           "y": 193,
-          "zOrder": 3001,
+          "zOrder": 2,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -544,7 +544,7 @@
           "width": 104,
           "x": 252,
           "y": 259,
-          "zOrder": 3002,
+          "zOrder": 2,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -814,6 +814,11 @@
               "name": "happinessFactor",
               "type": "number",
               "value": 1
+            },
+            {
+              "name": "beingCarried",
+              "type": "boolean",
+              "value": false
             }
           ],
           "effects": [],
@@ -1107,6 +1112,11 @@
               "name": "happinessFactor",
               "type": "number",
               "value": 1
+            },
+            {
+              "name": "beingCarried",
+              "type": "boolean",
+              "value": false
             }
           ],
           "effects": [],
@@ -1795,17 +1805,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "ResetObjectTimer"
-                  },
-                  "parameters": [
-                    "pokemonGroup",
-                    "\"movementTimer\""
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "MettreAutour"
                   },
                   "parameters": [
@@ -1831,6 +1830,17 @@
                 {
                   "type": {
                     "inverted": false,
+                    "value": "ResetObjectTimer"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "\"movementTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
                     "value": "ActivateBehavior"
                   },
                   "parameters": [
@@ -1849,6 +1859,18 @@
                     "pokemonGroup",
                     "PathfindingObstacle",
                     "yes"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "beingCarried",
+                    "False"
                   ],
                   "subInstructions": []
                 },
@@ -2332,11 +2354,34 @@
                     {
                       "type": {
                         "inverted": false,
+                        "value": "ResetObjectTimer"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "\"movementTimer\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
                         "value": "PauseObjectTimer"
                       },
                       "parameters": [
                         "pokemonGroup",
                         "\"movementTimer\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SetObjectVariableAsBoolean"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "beingCarried",
+                        "True"
                       ],
                       "subInstructions": []
                     }
@@ -3062,7 +3107,7 @@
                   "parameters": [
                     "pokemonGroup",
                     "\"movementTimer\"",
-                    "RandomInRange(1,8)"
+                    "RandomInRange(2,5)"
                   ],
                   "subInstructions": []
                 }
@@ -3076,6 +3121,18 @@
                   "parameters": [
                     "pokemonGroup",
                     "\"movementTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "DebuggerTools::ConsoleLog"
+                  },
+                  "parameters": [
+                    "\"walking...\"",
+                    "\"info\"",
+                    "\"creatures\""
                   ],
                   "subInstructions": []
                 }
@@ -3096,6 +3153,18 @@
                         "Pathfinding",
                         "=",
                         "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ObjectVariableAsBoolean"
+                      },
+                      "parameters": [
+                        "pokemonGroup",
+                        "beingCarried",
+                        ""
                       ],
                       "subInstructions": []
                     }
