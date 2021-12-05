@@ -1433,21 +1433,6 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "Doors",
-          "comment2": ""
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Comment",
-          "color": {
-            "b": 109,
-            "g": 230,
-            "r": 255,
-            "textB": 0,
-            "textG": 0,
-            "textR": 0
-          },
           "comment": "Camera",
           "comment2": ""
         },
@@ -1568,7 +1553,7 @@
           "events": []
         },
         {
-          "disabled": false,
+          "disabled": true,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
@@ -2066,6 +2051,86 @@
                     "0"
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "dialogOpen",
+                    "False"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetSceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "dialogOpen",
+                    "True"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "actionElse",
+                    "=",
+                    "3"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Ginny",
+                    "pokemonGroup",
+                    "34",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "actionElse",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SceneVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "dialogOpen",
+                    "True"
+                  ],
+                  "subInstructions": []
                 }
               ],
               "actions": [
@@ -2078,17 +2143,6 @@
                     "actionElse",
                     "=",
                     "3"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "SetSceneVariableAsBoolean"
-                  },
-                  "parameters": [
-                    "dialogOpen",
-                    "True"
                   ],
                   "subInstructions": []
                 }
@@ -2457,6 +2511,18 @@
             {
               "type": {
                 "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "actionElse",
+                "=",
+                "4"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
                 "value": "ShowLayer"
               },
               "parameters": [
@@ -2651,6 +2717,18 @@
             {
               "type": {
                 "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "actionElse",
+                "=",
+                "5"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
                 "value": "HideLayer"
               },
               "parameters": [
@@ -2687,6 +2765,88 @@
           },
           "comment": "Overall Tick",
           "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "pokemonGroup",
+          "conditions": [],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "health",
+                    ">=",
+                    "100"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "health",
+                    "=",
+                    "100"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "happiness",
+                    ">=",
+                    "100"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "happiness",
+                    "=",
+                    "100"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         },
         {
           "disabled": false,
@@ -2808,78 +2968,6 @@
                     {
                       "type": {
                         "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        ">",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        "=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        ">",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        "=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
                         "value": "CollisionNP"
                       },
                       "parameters": [
@@ -2902,7 +2990,7 @@
                         "pokemonGroup",
                         "happiness",
                         "+",
-                        "pokemonGroup.Variable(happinessFactor)"
+                        "pokemonGroup.Variable(happinessFactor) * 2"
                       ],
                       "subInstructions": []
                     }
