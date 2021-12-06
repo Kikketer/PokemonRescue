@@ -1790,19 +1790,6 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "MettreAutour"
-                  },
-                  "parameters": [
-                    "pokemonGroup",
-                    "Ginny",
-                    "16",
-                    "-10"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "PathfindingBehavior::SetImpassable"
                   },
                   "parameters": [
@@ -1820,6 +1807,20 @@
                   "parameters": [
                     "pokemonGroup",
                     "\"movementTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PathfindingBehavior::SetDestination"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "Pathfinding",
+                    "",
+                    "Ginny.CenterX() + 16",
+                    "Ginny.CenterY() - 8"
                   ],
                   "subInstructions": []
                 },
