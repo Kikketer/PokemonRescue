@@ -603,6 +603,54 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 8,
+          "layer": "",
+          "locked": false,
+          "name": "Blocker",
+          "persistentUuid": "5aaf7a84-b07b-4993-a60b-2ac1ca918f11",
+          "width": 110,
+          "x": 124,
+          "y": 338,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 108,
+          "layer": "",
+          "locked": false,
+          "name": "Blocker",
+          "persistentUuid": "ca788b39-1dab-469e-abbb-235d53ff33ae",
+          "width": 6,
+          "x": 118,
+          "y": 338,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 8,
+          "layer": "",
+          "locked": false,
+          "name": "Blocker",
+          "persistentUuid": "8cab8778-3a06-4793-b82b-d8e2ed2dfd85",
+          "width": 118,
+          "x": 119,
+          "y": 446,
+          "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -653,17 +701,17 @@
               "rotateObject": false
             },
             {
+              "allowDiagonals": false,
+              "maxSpeed": 60,
+              "movementAngleOffset": 0,
               "name": "TopDownMovement",
               "type": "TopDownMovementBehavior::TopDownMovementBehavior",
-              "allowDiagonals": true,
               "acceleration": 4000,
               "angleOffset": 0,
               "angularMaxSpeed": 180,
               "customIsometryAngle": 30,
               "deceleration": 800,
               "ignoreDefaultControls": false,
-              "maxSpeed": 90,
-              "movementAngleOffset": 0,
               "rotateObject": false,
               "viewpoint": "TopDown"
             },
@@ -1167,10 +1215,11 @@
           "effects": [],
           "behaviors": [
             {
+              "allowDiagonals": false,
+              "maxSpeed": 70,
               "name": "Pathfinding",
               "type": "PathfindingBehavior::PathfindingBehavior",
               "acceleration": 4000,
-              "allowDiagonals": true,
               "angleOffset": 0,
               "angularMaxSpeed": 180,
               "cellHeight": 20,
@@ -1178,7 +1227,6 @@
               "extraBorder": 0,
               "gridOffsetX": 0,
               "gridOffsetY": 0,
-              "maxSpeed": 90,
               "rotateObject": false
             },
             {
@@ -2137,31 +2185,9 @@
                     "0"
                   ],
                   "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "SceneVariableAsBoolean"
-                  },
-                  "parameters": [
-                    "dialogOpen",
-                    "False"
-                  ],
-                  "subInstructions": []
                 }
               ],
               "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "SetSceneVariableAsBoolean"
-                  },
-                  "parameters": [
-                    "dialogOpen",
-                    "True"
-                  ],
-                  "subInstructions": []
-                },
                 {
                   "type": {
                     "inverted": false,
@@ -2173,24 +2199,39 @@
                     "3"
                   ],
                   "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
+                },
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Distance"
+                    "value": "ChangeAnimation"
                   },
                   "parameters": [
+                    "critterDialog",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "LinkedObjects::LinkObjects"
+                  },
+                  "parameters": [
+                    "",
                     "Ginny",
+                    "pokemonGroup"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PathfindingBehavior::SetImpassable"
+                  },
+                  "parameters": [
                     "pokemonGroup",
-                    "34",
+                    "PathfindingObstacle",
                     ""
                   ],
                   "subInstructions": []
@@ -2198,644 +2239,77 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "VarScene"
+                    "value": "ActivateBehavior"
                   },
                   "parameters": [
-                    "actionElse",
-                    "=",
-                    "0"
+                    "pokemonGroup",
+                    "Pathfinding",
+                    "no"
                   ],
                   "subInstructions": []
                 },
                 {
                   "type": {
                     "inverted": false,
-                    "value": "SceneVariableAsBoolean"
+                    "value": "ActivateBehavior"
                   },
                   "parameters": [
-                    "dialogOpen",
+                    "pokemonGroup",
+                    "PathfindingObstacle",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "Ginny",
+                    "isCarrying",
+                    "True"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetObjectTimer"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "\"movementTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "PauseObjectTimer"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "\"movementTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SetObjectVariableAsBoolean"
+                  },
+                  "parameters": [
+                    "pokemonGroup",
+                    "beingCarried",
                     "True"
                   ],
                   "subInstructions": []
                 }
               ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "actionElse",
-                    "=",
-                    "3"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": [
-                {
-                  "disabled": true,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "SourisSurObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "",
-                        "no",
-                        ""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "MouseButtonPressed"
-                      },
-                      "parameters": [
-                        "",
-                        "Left"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "BuiltinCommonInstructions::Once"
-                      },
-                      "parameters": [],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ToggleSceneVariableAsBoolean"
-                      },
-                      "parameters": [
-                        "dialogOpen"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "TextObject::String"
-                      },
-                      "parameters": [
-                        "critterDialogText",
-                        "=",
-                        "\"Health: \" + ToString(pokemonGroup.Variable(health)) + NewLine() + \"Happiness: \" + ToString(pokemonGroup.Variable(happiness))"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "AnimationName"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "\"pet\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        "+",
-                        "pokemonGroup.Variable(happinessFactor)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "TextObject::String"
-                      },
-                      "parameters": [
-                        "critterDialogText",
-                        "=",
-                        "\"Health: \" + ToString(pokemonGroup.Variable(health)) + NewLine() + \"Happiness: \" + ToString(pokemonGroup.Variable(happiness))"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "AnimationName"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "\"feed\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        "+",
-                        "pokemonGroup.Variable(healthFactor)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "TextObject::String"
-                      },
-                      "parameters": [
-                        "critterDialogText",
-                        "=",
-                        "\"Health: \" + ToString(pokemonGroup.Variable(health)) + NewLine() + \"Happiness: \" + ToString(pokemonGroup.Variable(happiness))"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "AnimationName"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "\"pickup\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ChangeAnimation"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "SetSceneVariableAsBoolean"
-                      },
-                      "parameters": [
-                        "dialogOpen",
-                        "False"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "LinkedObjects::LinkObjects"
-                      },
-                      "parameters": [
-                        "",
-                        "Ginny",
-                        "pokemonGroup"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "PathfindingBehavior::SetImpassable"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "PathfindingObstacle",
-                        ""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ActivateBehavior"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "Pathfinding",
-                        "no"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ActivateBehavior"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "PathfindingObstacle",
-                        ""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "SetObjectVariableAsBoolean"
-                      },
-                      "parameters": [
-                        "Ginny",
-                        "isCarrying",
-                        "True"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ResetObjectTimer"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "\"movementTimer\""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "PauseObjectTimer"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "\"movementTimer\""
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "SetObjectVariableAsBoolean"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "beingCarried",
-                        "True"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "AnimationName"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "\"cancel\""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "SetSceneVariableAsBoolean"
-                      },
-                      "parameters": [
-                        "dialogOpen",
-                        "False"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ChangeAnimation"
-                      },
-                      "parameters": [
-                        "critterDialog",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "SceneVariableAsBoolean"
-              },
-              "parameters": [
-                "dialogOpen",
-                "True"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "actionElse",
-                "=",
-                "4"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ShowLayer"
-              },
-              "parameters": [
-                "",
-                "\"Menus\""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ChangeTimeScale"
-              },
-              "parameters": [
-                "",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "KeyPressed"
-                  },
-                  "parameters": [
-                    "",
-                    "Left"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": [],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeAnimation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    "-",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "KeyPressed"
-                  },
-                  "parameters": [
-                    "",
-                    "Right"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": [],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeAnimation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    "+",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Animation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    ">=",
-                    "4"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeAnimation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Animation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    "<",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeAnimation"
-                  },
-                  "parameters": [
-                    "critterDialog",
-                    "=",
-                    "3"
-                  ],
-                  "subInstructions": []
-                }
-              ],
               "events": []
             }
           ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "SceneVariableAsBoolean"
-              },
-              "parameters": [
-                "dialogOpen",
-                "False"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "actionElse",
-                "=",
-                "5"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "HideLayer"
-              },
-              "parameters": [
-                "",
-                "\"Menus\""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ChangeTimeScale"
-              },
-              "parameters": [
-                "",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
         },
         {
           "disabled": false,
@@ -2902,374 +2376,6 @@
           },
           "comment": "Critter Degrade",
           "comment2": ""
-        },
-        {
-          "disabled": true,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Timer"
-              },
-              "parameters": [
-                "",
-                "10",
-                "\"creatureEvent\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ResetTimer"
-              },
-              "parameters": [
-                "",
-                "\"creatureEvent\""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "happinessFactor",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "foodFactorLeft",
-                "=",
-                "3"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": [
-            {
-              "disabled": true,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::ForEach",
-              "object": "pokemonGroup",
-              "conditions": [],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        ">",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        "-",
-                        "Variable(happinessDegradeFactor)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        ">",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        "-",
-                        "Variable(healthDegradeFactor)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "CollisionNP"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "playground",
-                        "",
-                        "",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarScene"
-                      },
-                      "parameters": [
-                        "happinessFactor",
-                        "+",
-                        "1"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "CollisionNP"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "foodLeft",
-                        "",
-                        "",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarScene"
-                      },
-                      "parameters": [
-                        "foodFactorLeft",
-                        "-",
-                        "1"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
-            },
-            {
-              "disabled": true,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::ForEach",
-              "object": "pokemonGroup",
-              "conditions": [],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "CollisionNP"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "playground",
-                        "",
-                        "",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        "+",
-                        "Variable(happinessFactor)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "CollisionNP"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "foodLeft",
-                        "",
-                        "",
-                        ""
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        "+",
-                        "Variable(foodFactorLeft)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        ">=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "health",
-                        "=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        ">=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "pokemonGroup",
-                        "happiness",
-                        "=",
-                        "100"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                }
-              ]
-            }
-          ]
         },
         {
           "disabled": false,
